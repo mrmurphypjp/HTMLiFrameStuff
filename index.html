@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <style>
-    /* Reset margins so it fits cleanly inside the iframe */
     body {
       margin: 0;
       padding: 0;
@@ -12,22 +11,20 @@
       background-color: transparent;
     }
 
-    /* Container matching the course card styling */
     .marquee-container {
       width: 100%;
       overflow: hidden;
       white-space: nowrap;
       box-sizing: border-box;
-      background-color: #1a2a3a; /* Dark Navy Theme */
+      background-color: #1a2a3a;
       color: #ffffff;
       border: 1px solid #0f1923;
-      border-bottom: 3px solid #c9a227; /* Gold Accent Line */
+      border-bottom: 3px solid #c9a227;
       border-radius: 6px;
       padding: 10px 0;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
-    /* Scrolling text styles */
     .marquee-text {
       display: inline-block;
       padding-left: 100%;
@@ -38,13 +35,11 @@
       letter-spacing: 0.5px;
     }
 
-    /* Gold text highlight */
-    .marquee-text span.gold-accent {
+    .gold-accent {
       color: #ddc488;
       font-family: Georgia, 'Times New Roman', serif;
     }
 
-    /* Continuous scrolling animation */
     @keyframes marquee {
       0%   { transform: translate(0, 0); }
       100% { transform: translate(-100%, 0); }
@@ -54,10 +49,22 @@
 <body>
 
   <div class="marquee-container">
-    <div class="marquee-text">
-      ❖ <span class="gold-accent">ANNOUNCEMENT:</span> Summer Reading Quiz on Monday!! ❖ <span class="gold-accent">ANNOUNCEMENT:</span> Summer Reading Quiz on Monday!! ❖ <span class="gold-accent">ANNOUNCEMENT:</span> Summer Reading Quiz on Monday!! ❖ <span class="gold-accent">ANNOUNCEMENT:</span> Summer Reading Quiz on Monday!! ❖
+    <div class="marquee-text" id="marquee">
+      <!-- Populated dynamically via URL parameter -->
     </div>
   </div>
+
+  <script>
+    // Read the "?text=" parameter from the iframe URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const customText = urlParams.get('text') || "Welcome to class!";
+    
+    // Format with your gold accent styling and repeat it across the banner
+    const formattedMessage = `❖ <span class="gold-accent">ANNOUNCEMENT:</span> ${customText} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`;
+    
+    // Repeat 6 times so it scrolls continuously
+    document.getElementById('marquee').innerHTML = formattedMessage.repeat(6);
+  </script>
 
 </body>
 </html>
