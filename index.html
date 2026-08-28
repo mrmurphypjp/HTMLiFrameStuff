@@ -16,23 +16,22 @@
       overflow: hidden;
       white-space: nowrap;
       box-sizing: border-box;
-      background-color: #1a2a3a;
+      background-color: #1a2a3a; /* Matches top banner exact navy */
       color: #ffffff;
-      border: 1px solid #0f1923;
-      border-bottom: 3px solid #c9a227;
-      border-radius: 6px;
-      padding: 10px 0;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      border: none;
+      border-bottom: 3px solid #c9a227; /* Gold Accent Line */
+      border-radius: 0 0 6px 6px; /* ONLY bottom corners rounded */
+      padding: 8px 0;
     }
 
     .marquee-text {
       display: inline-block;
       padding-left: 100%;
-      animation: marquee 50s linear infinite;
       font-weight: bold;
       color: #ffffff;
       font-size: 15px;
       letter-spacing: 0.5px;
+      animation: marquee linear infinite;
     }
 
     @keyframes marquee {
@@ -50,15 +49,17 @@
   </div>
 
   <script>
-    // Read the "?text=" parameter from the iframe URL
     const urlParams = new URLSearchParams(window.location.search);
     const customText = urlParams.get('text') || "Welcome to class!";
     
-    // Repeat ONLY your exact text separated by clean spacing
-    const formattedMessage = `${customText} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`;
+    const singleBlock = `${customText} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`;
+    const fullMessage = singleBlock.repeat(6);
     
-    // Repeat 6 times so it scrolls continuously
-    document.getElementById('marquee').innerHTML = formattedMessage.repeat(6);
+    const marqueeElement = document.getElementById('marquee');
+    marqueeElement.innerHTML = fullMessage;
+
+    const speedSeconds = Math.max(25, Math.round(fullMessage.length * 0.15));
+    marqueeElement.style.animationDuration = `${speedSeconds}s`;
   </script>
 
 </body>
