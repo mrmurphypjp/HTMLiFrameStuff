@@ -35,11 +35,6 @@
       letter-spacing: 0.5px;
     }
 
-    .gold-accent {
-      color: #ddc488;
-      font-family: Georgia, 'Times New Roman', serif;
-    }
-
     @keyframes marquee {
       0%   { transform: translate(0, 0); }
       100% { transform: translate(-100%, 0); }
@@ -59,8 +54,8 @@
     const urlParams = new URLSearchParams(window.location.search);
     const customText = urlParams.get('text') || "Welcome to class!";
     
-    // Format with your gold accent styling and repeat it across the banner
-    const formattedMessage = `❖ <span class="gold-accent">ANNOUNCEMENT:</span> ${customText} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`;
+    // Repeat ONLY your exact text separated by clean spacing
+    const formattedMessage = `${customText} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`;
     
     // Repeat 6 times so it scrolls continuously
     document.getElementById('marquee').innerHTML = formattedMessage.repeat(6);
